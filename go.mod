@@ -1,4 +1,4 @@
-module GenGoToolkit
+module github.com/ElmosHomie492/GenGoToolkit
 
 go 1.21
 
