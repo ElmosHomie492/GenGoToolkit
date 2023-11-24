@@ -6,31 +6,18 @@ import (
 	"fmt"
 )
 
-// LoggerClient defines the interface for a logging client
-type LoggerClient interface {
-	Logger(logID string) *logging.Logger
-	Close() error
-}
-
 // Logger represents the GCP logger
 type Logger struct {
-	client LoggerClient
+	client *logging.Client
 	logger *logging.Logger
 }
 
-func CreateLogger(ctx context.Context, projectID string) (*logging.Logger, error) {
+// New initializes a new GCP logger
+func New(projectID, logName string) (*Logger, error) {
+	ctx := context.Background()
 	client, err := logging.NewClient(ctx, projectID)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create logging client: %w", err)
-	}
-
-	return client.Logger("GenGoToolkit"), nil
-}
-
-// New initializes a new GCP logger
-func New(ctx context.Context, client LoggerClient, logName string) (*Logger, error) {
-	if client == nil {
-		return nil, fmt.Errorf("client cannot be nil")
 	}
 
 	return &Logger{
