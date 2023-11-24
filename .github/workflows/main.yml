@@ -19,6 +19,6 @@ jobs:
           title: "v$semver"
           tag: "v$semver"
           draft: false
-          regex: ".[0-9a-zA-Z-]"
+          regex: "[0-9a-zA-Z-]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
