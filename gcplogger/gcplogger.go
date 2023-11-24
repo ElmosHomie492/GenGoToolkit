@@ -6,7 +6,6 @@ import (
 	"fmt"
 )
 
-// Logger represents the GCP logger
 type Logger struct {
 	client *logging.Client
 	logger *logging.Logger
